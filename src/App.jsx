@@ -6,6 +6,7 @@ import { Home } from './components/Home'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import {AllBooks} from "./components/AllBooks"
 import { Book } from './components/Book'
+import { AddBooks } from './components/AddBooks'
 
 function App() {
   return <MantineProvider>
@@ -15,6 +16,8 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/allBooks' element={<AllBooks/>}/>
         <Route path='/books/:id' element={<Book/>}/>
+        <Route path='/addBooks' element={<AddBooks/>}></Route>
+
       </Routes>
     </BrowserRouter>
 
