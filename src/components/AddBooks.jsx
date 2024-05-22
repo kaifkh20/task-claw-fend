@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom"
 async function AddBookPost(values) {
     const response = await fetch('http://localhost:3000/books', {
       method: "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization':localStorage.getItem("access_token")||""},
       body: JSON.stringify(values)
     })
     if(!response.ok){

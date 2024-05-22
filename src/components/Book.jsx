@@ -1,8 +1,9 @@
-import { Grid,Flex, Image, Title, Text, Button, Tooltip,Alert, Loader, Badge } from "@mantine/core";
+import { Grid,Flex, Image, Title, Text, Button, Tooltip,Alert, Loader, Badge, Anchor } from "@mantine/core";
 import { IconBrandGit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UpdateForm } from "./UpdateBooks";
+import { useLogin } from "../context/LoginContext";
 
 
 async function fetchBookData(id) {
@@ -26,6 +27,12 @@ export function Book({ title = "Unknown" }) {
 
   const navigate = useNavigate()
   const { id } = useParams()
+
+  const value  = localStorage.getItem('isLoggedIn')
+  let isLoggedIn = false
+  if(value==="true") {
+      isLoggedIn = true
+  } 
 
   const getBooks = async()=>{
     try{
@@ -59,7 +66,8 @@ export function Book({ title = "Unknown" }) {
           mih={"50vh"}
           src={"/book-logo.jpeg"}
         />
-        <Tooltip color="yellow" position="right" label="Update The Book Details">
+        {isLoggedIn&&<>
+          <Tooltip color="yellow" position="right" label="Update The Book Details">
           <Button m={"sm"} color="yellow" size='sm' variant='light' rightSection={<IconBrandGit />}
             onClick={(e)=>{
               e.preventDefault()
@@ -81,7 +89,9 @@ export function Book({ title = "Unknown" }) {
           >
             Delete
           </Button>
-        </Tooltip>
+        </Tooltip></>}
+
+        {!isLoggedIn && <Button m={"md"}><Anchor href="/login" c={"white"}>Login</Anchor></Button>}
       </Grid.Col>
       <Grid.Col bg={"white"} m={"md"} span={"auto"} h={"100vh"}>
         <Title>{book.title}</Title>

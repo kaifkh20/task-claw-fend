@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 async function DeletBook(id) {
     const response = await fetch(`http://localhost:3000/books/${id}`, {
       method: "DELETE",
+      headers : {'Authorization':localStorage.getItem("access_token")||""}
     })
     if(!response.ok){
       throw new Error("Some error occured")

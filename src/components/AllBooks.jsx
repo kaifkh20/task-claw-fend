@@ -2,6 +2,7 @@ import { Grid, Card, Image, Text, Flex, Badge, Button, Group, Center, Anchor, Lo
 import { IconBrandGit, IconHttpDelete, IconTrash, IconUpload } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import {useSearchParams } from 'react-router-dom';
+import { useLogin } from '../context/LoginContext';
 
 
 
@@ -24,7 +25,11 @@ export function AllBooks() {
   const [isLoading, setIsLoading] = useState(true)
 
   let [isDeleted,setIsDeleted] = useSearchParams()
-  const [displayNotification,setDisplayNotification] = useState(false)
+  const value  = localStorage.getItem('isLoggedIn')
+  let isLoggedIn = false
+  if(value==="true") {
+      isLoggedIn = true
+  } 
 
   isDeleted.get("isDeleted")
 
@@ -72,6 +77,14 @@ export function AllBooks() {
 
   return (
     <Grid p={"md"} m={"md"} justify='center' align='center'>
+
+      {booksData.length===0 &&
+        <Center>
+          No Books Available. 
+          {isLoggedIn && <Anchor href='/addBooks'>Add Now</Anchor>}
+          {!isLoggedIn && <Anchor href='/login'>Login Now to Add</Anchor>}
+        </Center>
+      }
       
       {booksData.map((data) =>
         // console.log(data)

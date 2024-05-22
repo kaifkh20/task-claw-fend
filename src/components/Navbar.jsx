@@ -1,12 +1,21 @@
 import { Flex,Button,TextInput,Title, Anchor } from "@mantine/core";
 import {IconSearch} from "@tabler/icons-react"
+import { useLogin } from "../context/LoginContext";
 
 export function Navbar(){
+
+  const {setIsLoggedIn} = useLogin()
+  const value  = localStorage.getItem('isLoggedIn')
+  let isLoggedIn = false
+  if(value==="true") {
+      isLoggedIn = true
+  } 
+  console.log("navbar",);
 
   return (
     <Flex
       mih={60}
-      bg="rgba(000,000,000,0.1)"
+      bg="rgba(255,255,255,0.9)"
       // opacity={"0.5"}
       align={"center"}
       justify={"space-between"}
@@ -17,7 +26,7 @@ export function Navbar(){
         bookinfo.com
       </Title>
       <Flex align={"center"} justify={"space-between"}>
-        <Anchor m={2} c={"black"}>Home</Anchor>
+        
         <TextInput
           m={2}
           size="sm"
@@ -25,9 +34,24 @@ export function Navbar(){
           leftSection={<IconSearch/>}
           placeholder="Search"
         />
-
-        <Button
-        >Login</Button>
+        <Button color="black">
+        <Anchor href="/allBooks" m={2} c={"white"}>Home</Anchor>
+        </Button>
+        {!isLoggedIn && 
+        <Button mx={1}>
+          <Anchor c={"white"} href="/login">Login</Anchor>
+        </Button>}
+        {isLoggedIn && <Button>
+          <Anchor c={"white"} href="/allBooks" onClick={(e)=>{
+            localStorage.removeItem("access_token")
+            localStorage.setItem("isLoggedIn",false)
+            setIsLoggedIn(false)
+          }}>Logout</Anchor>
+        </Button>
+        }
+        {isLoggedIn&&<Button mx={1}>
+          <Anchor c={"white"} href="/addBooks">Add Book</Anchor>
+        </Button>}
       </Flex>
     </Flex>
   )

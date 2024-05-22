@@ -2,24 +2,22 @@ import { Anchor, Button, Center, Flex, TextInput, Textarea, Title } from "@manti
 import { DateInput } from "@mantine/dates"
 import { useForm } from "@mantine/form"
 import { Navigate, useNavigate } from "react-router-dom"
-import { useLogin } from "../context/LoginContext"
 
-async function LoginPost(values) {
-    const response = await fetch('http://localhost:3000/login', {
+async function SignupPost(values) {
+    const response = await fetch('http://localhost:3000/signup', {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)
     })
+    const body = await response.json()
+    
     if(!response.ok){
       throw new Error("Some error occured")
-    }else{
-        const body = await response.json()
-        // console.log(body)
-        localStorage.setItem("access_token",body.access_token)
     }
+    return body
 }
 
-export function Login() {
+export function Signup() {
 
   const navigate = useNavigate()
 
@@ -31,21 +29,18 @@ export function Login() {
     }
   })
 
-  const{setIsLoggedIn} = useLogin()
-
   return (
     <Flex h={"80vh"} justify={"center"} align={"center"} direction={"column"}>
-      <Title my={"md"}>Login</Title>
+      <Title my={"md"}>Signup</Title>
       <form onSubmit={form.onSubmit((values) => {
         console.log(values)
         const postdata = async()=>{
           try{
-            await LoginPost(values)
-            setIsLoggedIn(true)
-            localStorage.setItem('isLoggedIn',true)
+            const body = await SignupPost(values)
+            
             navigate('/allBooks')
           }catch(e){
-            navigate('/login')
+            navigate('/signup')
             // <Navigate to={"/"}/>
             console.error(e)
           }
@@ -71,11 +66,11 @@ export function Login() {
           </Flex>
         </Flex>
         <Center>
-            <Button m={"md"} type="submit">Login</Button>
+            <Button m={"md"} type="submit">Signup</Button>
             
         </Center>
         <Center>
-        <Anchor href="/signup">Register Here</Anchor>
+        <Anchor href="/login">Login Here</Anchor>
         </Center>
       </form>
     </Flex>
