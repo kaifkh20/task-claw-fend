@@ -1,13 +1,16 @@
 import { Grid,Flex, Image, Title, Text, Button, Tooltip, Loader, Badge } from "@mantine/core";
 import { IconBrandGit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { UpdateForm } from "./UpdateBooks";
 
-async function fetchBookData() {
-  const { id } = useParams()
+
+async function fetchBookData(id) {
+  
   try {
     const response = await fetch(`http://localhost:3000/books/${id}`)
     const book = response.json()
+    
     return book
   } catch (e) {
     console.error(e)
@@ -20,9 +23,14 @@ export function Book({ title = "Unknown" }) {
   const [loading,setLoading] = useState(true)
   const [error,setError] = useState(false)
   const [book,setBook] = useState()
+
+  const navigate = useNavigate()
+  const { id } = useParams()
+
   const getBooks = async()=>{
     try{
-      const book = await fetchBookData()
+      const book = await fetchBookData(id)
+      localStorage.setItem('book',JSON.stringify(book))
       setBook(book)
       setLoading(false)
     }catch(e){
@@ -41,8 +49,10 @@ export function Book({ title = "Unknown" }) {
     )
   }
 
+  
 
   return (
+
     <Grid m={"md"} h={"100%"}>
       <Grid.Col span={2} m={"sm"}>
         <Image
@@ -50,7 +60,14 @@ export function Book({ title = "Unknown" }) {
           src={"/book-logo.jpeg"}
         />
         <Tooltip color="yellow" position="right" label="Update The Book Details">
-          <Button m={"sm"} color="yellow" size='sm' variant='light' rightSection={<IconBrandGit />}>
+          <Button m={"sm"} color="yellow" size='sm' variant='light' rightSection={<IconBrandGit />}
+            onClick={(e)=>{
+              e.preventDefault()
+              // const {id} = useParams()
+              
+              navigate(`/updateBook/${id}`)
+            }}
+          >
             Update
           </Button>
         </Tooltip>

@@ -63,7 +63,7 @@ export function AllBooks() {
     <Grid p={"md"} m={"md"} justify='center' align='center'>
       {booksData.map((data) =>
         // console.log(data)
-        <BookCard key={data._id} id={data._id} title={data.title} genre={data.genre} author={data.author} year={2024} />
+        <BookCard key={data._id} id={data._id} title={data.title} genre={data.genre} author={data.author} year={data.yearPublished} />
       )}
     </Grid>);
 }
