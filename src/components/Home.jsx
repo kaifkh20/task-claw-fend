@@ -31,18 +31,19 @@ function HomeContent() {
         <BackgroundImage
           src="../public/front-page.jpg"
           opacity={10}
-          
+          // w={"50%"}
         >
           {/* <Navbar/> */}
 
           <Flex
             align={"center"}
             justify={"center"}
-            // bg={"rgba(0,0,0,.3)"}
-            h={"80%"}
+            bg={"rgba(0,0,0,.3)"}
+            h={"100%"}
             direction={"column"}
           >
-            <Title>All In One Destination</Title>
+            <Title c={"white"}>All In One Destination</Title>
+            {/* <Image src="../public/bg-book.jpg"/> */}
             <Group>
               <Button variant="filled" color="black" rightSection={<IconArrowRight size={14} />}><Anchor href="/allBooks" c={'white'}>Browse All Books</Anchor></Button>
             </Group>

@@ -15,14 +15,14 @@ export function Navbar(){
   return (
     <Flex
       mih={60}
-      bg="rgba(255,255,255,0.9)"
+      bg="#FDFDFD"
       // opacity={"0.5"}
       align={"center"}
       justify={"space-between"}
       gap={10}
       p={10}
     >
-      <Title>
+      <Title c={"#071952"}>
         bookinfo.com
       </Title>
       <Flex align={"center"} justify={"space-between"}>
