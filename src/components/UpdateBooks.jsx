@@ -73,12 +73,18 @@ export function UpdateForm() {
             Update
           </Button>
         </Tooltip>
+        
 
-        {/* <Tooltip position="right" color="red" label="Delete The Book">
-          <Button m={"sm"} color="red" size='sm' rightSection={<IconTrash />}>
-            Delete
+        <Tooltip position="right" color="red" label="Cancel Editing">
+          <Button m={"sm"} color="red" size='sm' rightSection={<IconTrash />}
+            onClick={(e)=>{
+                e.preventDefault()
+                navigate(-1)
+            }}
+          >
+            Cancel
           </Button>
-        </Tooltip> */}
+        </Tooltip>
       </Grid.Col>
       <Grid.Col bg={"white"} m={"md"} span={"auto"} h={"100vh"}>
 

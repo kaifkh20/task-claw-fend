@@ -1,4 +1,4 @@
-import { Grid,Flex, Image, Title, Text, Button, Tooltip, Loader, Badge } from "@mantine/core";
+import { Grid,Flex, Image, Title, Text, Button, Tooltip,Alert, Loader, Badge } from "@mantine/core";
 import { IconBrandGit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -73,7 +73,12 @@ export function Book({ title = "Unknown" }) {
         </Tooltip>
 
         <Tooltip position="right" color="red" label="Delete The Book">
-          <Button m={"sm"} color="red" size='sm' rightSection={<IconTrash />}>
+          <Button m={"sm"} color="red" size='sm' rightSection={<IconTrash />}
+            onClick={(e)=>{
+              e.preventDefault()
+              navigate(`/deleteBook/${id}`)
+            }}
+          >
             Delete
           </Button>
         </Tooltip>

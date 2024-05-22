@@ -1,6 +1,8 @@
 import { Grid, Card, Image, Text, Flex, Badge, Button, Group, Center, Anchor, Loader } from '@mantine/core';
 import { IconBrandGit, IconHttpDelete, IconTrash, IconUpload } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import {useSearchParams } from 'react-router-dom';
+
 
 
 async function fetchAllBooks() {
@@ -20,6 +22,16 @@ export function AllBooks() {
   const [error, setError] = useState(null)
   const [booksData, setBooksData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
+  let [isDeleted,setIsDeleted] = useSearchParams()
+  const [displayNotification,setDisplayNotification] = useState(false)
+
+  isDeleted.get("isDeleted")
+
+  if(isDeleted){
+    console.log("getting here");
+  }
+
 
   useEffect(() => {
     const getBooks = async () => {
@@ -59,15 +71,15 @@ export function AllBooks() {
   }
 
   return (
-
     <Grid p={"md"} m={"md"} justify='center' align='center'>
+      
       {booksData.map((data) =>
         // console.log(data)
         <BookCard key={data._id} id={data._id} title={data.title} genre={data.genre} author={data.author} year={data.yearPublished} />
       )}
-    </Grid>);
+    </Grid>
+  )
 }
-
 function BookCard({ id, title, genre, author, year }) {
   return (
     <Grid.Col span={4}>
@@ -111,5 +123,4 @@ function BookCard({ id, title, genre, author, year }) {
 
   )
 }
-
 

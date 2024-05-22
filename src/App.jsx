@@ -8,6 +8,7 @@ import {AllBooks} from "./components/AllBooks"
 import { Book } from './components/Book'
 import { AddBooks } from './components/AddBooks'
 import { UpdateForm } from './components/UpdateBooks'
+import { DeleteBooks } from './components/DeleteBooks'
 
 function App() {
   return <MantineProvider>
@@ -19,6 +20,7 @@ function App() {
         <Route path='/books/:id' element={<Book/>}/>
         <Route path='/addBooks' element={<AddBooks/>}></Route>
         <Route path='/updateBook/:id' element={<UpdateForm/>}></Route>
+        <Route path='/deleteBook/:id' element={<DeleteBooks/>}></Route>
       </Routes>
     </BrowserRouter>
 
