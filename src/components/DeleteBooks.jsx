@@ -2,8 +2,10 @@ import { Flex,Alert,Button,Notification } from "@mantine/core"
 import { IconTrash } from "@tabler/icons-react"
 import { useNavigate, useParams } from "react-router-dom"
 
+import { URL } from "../App"
+
 async function DeletBook(id) {
-    const response = await fetch(`${process.env.URL}/${id}`, {
+    const response = await fetch(`${URL}/${id}`, {
       method: "DELETE",
       headers : {'Authorization':localStorage.getItem("access_token")||""}
     })

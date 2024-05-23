@@ -13,6 +13,8 @@ import { Login } from './components/Login'
 import { Signup } from './components/Signup'
 import { LoginProvider } from './context/LoginContext'
 
+export const URL = "https://task-claw-bend.onrender.com"
+
 function App() {
   return <MantineProvider>
     <LoginProvider>

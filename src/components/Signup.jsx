@@ -3,8 +3,10 @@ import { DateInput } from "@mantine/dates"
 import { useForm } from "@mantine/form"
 import { Navigate, useNavigate } from "react-router-dom"
 
+import { URL } from "../App"
+
 async function SignupPost(values) {
-    const response = await fetch(`${process.env.URL}/signup`, {
+    const response = await fetch(`${URL}/signup`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)

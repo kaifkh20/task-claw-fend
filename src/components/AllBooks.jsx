@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import {useSearchParams } from 'react-router-dom';
 import { useLogin } from '../context/LoginContext';
 
+import { URL } from '../App';
 
 
 async function fetchAllBooks() {
   try {
-    const response = await fetch(`${process.env.URL}/books`)
+    const response = await fetch(`${URL}/books`)
     const books = await response.json()
     // console.log(books)
     return books
