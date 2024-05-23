@@ -29,7 +29,7 @@ function HomeContent() {
     return (
       <Flex h={"100vh"}>
         <BackgroundImage
-          src="../public/front-page.jpg"
+          src="/front-page.jpg"
           opacity={10}
           // w={"50%"}
         >
