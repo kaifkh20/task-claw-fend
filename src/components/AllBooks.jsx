@@ -53,7 +53,7 @@ export function AllBooks() {
       }
     }
     getBooks()
-    return (() => setIsLoading(false))
+    setIsLoading(false)
   }, [])
 
   if (error) {
