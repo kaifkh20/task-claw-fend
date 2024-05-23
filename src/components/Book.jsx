@@ -8,8 +8,8 @@ import { URL } from "../App";
 async function fetchBookData(id) {
   
   try {
-    const response = await fetch(`${URL}/${id}`)
-    const book = response.json()
+    const response = await fetch(`${URL}/books/${id}`)
+    const book = await response.json()
     
     return book
   } catch (e) {

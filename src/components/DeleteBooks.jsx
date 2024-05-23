@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { URL } from "../App"
 
 async function DeletBook(id) {
-    const response = await fetch(`${URL}/${id}`, {
+    const response = await fetch(`${URL}/books/${id}`, {
       method: "DELETE",
       headers : {'Authorization':localStorage.getItem("access_token")||""}
     })

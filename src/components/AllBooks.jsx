@@ -9,7 +9,7 @@ import { URL } from '../App';
 
 async function fetchAllBooks() {
   try {
-    const response = await fetch(`${URL}/books`)
+    const response = await fetch(`${URL}/books`,{method:"GET"})
     const books = await response.json()
     // console.log(books)
     return books

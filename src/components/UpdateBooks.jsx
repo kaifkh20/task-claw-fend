@@ -7,7 +7,7 @@ import { useForm } from "@mantine/form";
 import { URL } from "../App";
 
 async function AddBookPut(values,id) {
-    const response = await fetch(`${URL}/${id}`, {
+    const response = await fetch(`${URL}/books/${id}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json','Authorization':localStorage.getItem("access_token")||"" },
       body: JSON.stringify(values)
