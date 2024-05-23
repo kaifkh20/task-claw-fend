@@ -8,7 +8,7 @@ import { useLogin } from '../context/LoginContext';
 
 async function fetchAllBooks() {
   try {
-    const response = await fetch('http://localhost:3000/books')
+    const response = await fetch(`${process.env.URL}/books`)
     const books = await response.json()
     // console.log(books)
     return books

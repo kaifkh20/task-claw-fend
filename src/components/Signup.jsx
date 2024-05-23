@@ -4,7 +4,7 @@ import { useForm } from "@mantine/form"
 import { Navigate, useNavigate } from "react-router-dom"
 
 async function SignupPost(values) {
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch(`${process.env.URL}/signup`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)

@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom"
 import { useLogin } from "../context/LoginContext"
 
 async function LoginPost(values) {
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch( `${process.env.URL}/login`,{
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values)

@@ -2,14 +2,12 @@ import { Grid,Flex, Image, Title, Text, Button, Tooltip,Alert, Loader, Badge, An
 import { IconBrandGit, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { UpdateForm } from "./UpdateBooks";
-import { useLogin } from "../context/LoginContext";
-
+dotenv
 
 async function fetchBookData(id) {
   
   try {
-    const response = await fetch(`http://localhost:3000/books/${id}`)
+    const response = await fetch(`${process.env.URL}/${id}`)
     const book = response.json()
     
     return book

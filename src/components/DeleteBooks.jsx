@@ -3,7 +3,7 @@ import { IconTrash } from "@tabler/icons-react"
 import { useNavigate, useParams } from "react-router-dom"
 
 async function DeletBook(id) {
-    const response = await fetch(`http://localhost:3000/books/${id}`, {
+    const response = await fetch(`${process.env.URL}/${id}`, {
       method: "DELETE",
       headers : {'Authorization':localStorage.getItem("access_token")||""}
     })

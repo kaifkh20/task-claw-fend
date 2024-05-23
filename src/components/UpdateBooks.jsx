@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "@mantine/form";
 
 async function AddBookPut(values,id) {
-    const response = await fetch(`http://localhost:3000/books/${id}`, {
+    const response = await fetch(`${process.env.URL}/${id}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json','Authorization':localStorage.getItem("access_token")||"" },
       body: JSON.stringify(values)
